@@ -1,40 +1,58 @@
-import createStore from './createStore';
+import { createTestStore, arrayOfDeffered } from './utils';
 
 import takeLatestParametric from '../takeLatestParametric';
 
-import { take } from 'redux-saga/effects';
-
 const actionConst = 'TEST_ACTION_RECEIVED';
 
-const actionCreatorOne = () => ({
+const actionCreatorOne = payload => ({
     type: actionConst,
     name: 'testOne',
-    payload: 'testOne',
+    payload: payload,
 });
 
-const actionCreatorTwo = () => ({
+const actionCreatorTwo = payload => ({
     type: actionConst,
     name: 'testTwo',
-    payload: 'testTwo',
+    payload: payload,
 });
 
+const defs = arrayOfDeffered(4);
+
 test('TODO: done this test', () => {
-    const store = createStore(testSaga);
+    const store = createTestStore(testSaga);
 
     const actual = [];
 
     function* testSaga() {
-        yield takeLatestParametric(actionConst, { name: 'testOne' }, worker);
+        yield [
+            takeLatestParametric(actionConst, { name: 'testOne' }, worker),
+            takeLatestParametric(actionConst, { name: 'testTwo' }, workerTwo),
+        ];
     }
 
     function* worker(action) {
-        actual.push(action);
+        const resp = yield defs[action.payload - 1].promise;
+        actual.push({ action, resp });
     }
 
-    store.dispatch(actionCreatorOne());
-    store.dispatch(actionCreatorOne());
-    store.dispatch(actionCreatorOne());
-    console.log(actual);
+    function* workerTwo(action) {
+        const resp = yield defs[action.payload - 1].promise;
+        actual.push({ action, resp });
+    }
+
+    Promise.resolve(1)
+        .then(() => store.dispatch(actionCreatorOne(1)))
+        .then(() => store.dispatch(actionCreatorOne(2)))
+        .then(() => defs[0].resolve('w-1'))
+        .then(() => store.dispatch(actionCreatorOne(3)))
+        .then(() => store.dispatch(actionCreatorTwo(3)))
+        .then(() => store.dispatch(actionCreatorTwo(3)))
+        .then(() => store.dispatch(actionCreatorTwo(3)))
+        .then(() => store.dispatch(actionCreatorTwo(4)))
+        .then(() => defs[1].resolve('w-2'))
+        .then(() => defs[2].resolve('w-3'))
+        .then(() => defs[3].resolve('w-4'))
+        .then(() => console.log(actual));
 
     expect(1).toBe(1);
 });
