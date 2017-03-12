@@ -18,7 +18,7 @@ const actionCreatorTwo = payload => ({
 
 const defs = arrayOfDeffered(4);
 
-test('TODO: done this test', () => {
+it('TODO: done this test', () => {
     const store = createTestStore(testSaga);
 
     const actual = [];
@@ -40,7 +40,7 @@ test('TODO: done this test', () => {
         actual.push({ action, resp });
     }
 
-    Promise.resolve(1)
+    return Promise.resolve(1)
         .then(() => store.dispatch(actionCreatorOne(1)))
         .then(() => store.dispatch(actionCreatorOne(2)))
         .then(() => defs[0].resolve('w-1'))
@@ -52,7 +52,6 @@ test('TODO: done this test', () => {
         .then(() => defs[1].resolve('w-2'))
         .then(() => defs[2].resolve('w-3'))
         .then(() => defs[3].resolve('w-4'))
-        .then(() => console.log(actual));
-
-    expect(1).toBe(1);
+        .then(() => console.log(actual))
+        .then(() => expect(1).toBe(1));
 });
