@@ -1,0 +1,35 @@
+{
+  "name": "redux-saga-utils",
+  "jest": {
+    "testMatch": [
+       "**/__tests__/**/*.spec.js"
+    ]
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:dev": "webpack",
+    "build:prod": "webpack -p",
+    "test": "jest"
+  },
+  "version": "0.0.1",
+  "description": "High level utils for redux-saga",
+  "main": "dist/bundle.js",
+  "module": "src/index.js",
+  "repository": "https://github.com/DmitryFillo/redux-saga-utils.git",
+  "author": "Dmitry Fillo <fillo@fillo.me>",
+  "license": "MIT",
+  "peerDependencies": {
+    "redux-saga": "^0.14.3"
+  },
+  "devDependencies": {
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "jest": "^19.0.2",
+    "redux": "^3.6.0",
+    "redux-saga": "^0.14.3",
+    "rimraf": "^2.6.1",
+    "webpack": "^2.2.1"
+  }
+}
