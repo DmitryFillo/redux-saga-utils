@@ -12,4 +12,4 @@ High level utils for `redux-saga <https://github.com/redux-saga/redux-saga>`_.  
 API Reference
 =============
 
-TODO: linting, travis
+TODO: linting
