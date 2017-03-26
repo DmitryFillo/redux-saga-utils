@@ -12,17 +12,17 @@ const compareObject = (action, actionCompare) => !!Object.getOwnPropertyNames(ac
  * @returns {Object} task - Task object (redux-saga).
  */
 export default function* (pattern, actionCompare, saga, ...args) {
-    const task = yield fork(function* () {
-        let lastTask;
-        while (true) {
-            const action = yield take(pattern);
-            if (compareObject(action, actionCompare)) {
-                if (lastTask) {
-                    yield cancel(lastTask);
-                }
-                lastTask = yield fork(saga, ...args.concat(action));
-            }
+  const task = yield fork(function* () {
+    let lastTask;
+    while (true) {
+      const action = yield take(pattern);
+      if (compareObject(action, actionCompare)) {
+        if (lastTask) {
+          yield cancel(lastTask);
         }
-    });
-    return task;
+        lastTask = yield fork(saga, ...args.concat(action));
+      }
+    }
+  });
+  return task;
 }

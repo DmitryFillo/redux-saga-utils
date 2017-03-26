@@ -5,42 +5,42 @@ import takeLatestParametric from '../takeLatestParametric';
 const actionConst = 'TEST_ACTION_RECEIVED';
 
 const actionCreatorOne = payload => ({
-    type: actionConst,
-    name: 'testOne',
-    payload: payload,
+  type: actionConst,
+  name: 'testOne',
+  payload,
 });
 
 const actionCreatorTwo = payload => ({
-    type: actionConst,
-    name: 'testTwo',
-    payload: payload,
+  type: actionConst,
+  name: 'testTwo',
+  payload,
 });
 
 const defs = arrayOfDeffered(4);
 
 it('TODO: done this test', () => {
-    const store = createTestStore(testSaga);
+  const store = createTestStore(testSaga);
 
-    const actual = [];
+  const actual = [];
 
-    function* testSaga() {
-        yield [
-            takeLatestParametric(actionConst, { name: 'testOne' }, worker),
-            takeLatestParametric(actionConst, { name: 'testTwo' }, workerTwo),
-        ];
-    }
+  function* testSaga() {
+    yield [
+      takeLatestParametric(actionConst, { name: 'testOne' }, worker),
+      takeLatestParametric(actionConst, { name: 'testTwo' }, workerTwo),
+    ];
+  }
 
-    function* worker(action) {
-        const resp = yield defs[action.payload - 1].promise;
-        actual.push({ action, resp });
-    }
+  function* worker(action) {
+    const resp = yield defs[action.payload - 1].promise;
+    actual.push({ action, resp });
+  }
 
-    function* workerTwo(action) {
-        const resp = yield defs[action.payload - 1].promise;
-        actual.push({ action, resp });
-    }
+  function* workerTwo(action) {
+    const resp = yield defs[action.payload - 1].promise;
+    actual.push({ action, resp });
+  }
 
-    return Promise.resolve(1)
+  return Promise.resolve(1)
         .then(() => store.dispatch(actionCreatorOne(1)))
         .then(() => store.dispatch(actionCreatorOne(2)))
         .then(() => defs[0].resolve('w-1'))
