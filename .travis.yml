@@ -10,3 +10,5 @@ script:
   - yarn run lint
   - yarn run test
   - yarn run build:prod
+after_script:
+  - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
