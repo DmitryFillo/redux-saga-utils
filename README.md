@@ -33,7 +33,7 @@ API Reference
 
 ### takeLatestParametric
 
-``` sourceCode
+```js
 takeLatestParametric(pattern, actionCompare, saga, ...args)
 ```
 
@@ -43,7 +43,7 @@ Signature is a bit different from [takeLatest](https://github.com/redux-saga/red
 
 Imagine these action creators in the redux app:
 
-``` sourceCode
+```js
 const actionConst = 'EXAMPLE_ACTION';
 
 const actionScopeOne = payload => ({
@@ -61,7 +61,7 @@ const actionScopeTwo = payload => ({
 
 Then you can catch only actions with particular scope properties in the sagas:
 
-``` sourceCode
+```js
 import { takeLatestParametric } from 'redux-saga-utils';
 
 const worker = function* worker(action) {
@@ -75,7 +75,7 @@ const saga = function* saga() {
 
 ### awaitTransitiveActions
 
-``` sourceCode
+```js
 awaitTransitiveActions(actions, awaitActions)
 ```
 
@@ -85,7 +85,7 @@ Useful when you want to wait for actions which will be produced by another actio
 
 Imagine that you've these action creators:
 
-``` sourceCode
+```js
 const actionA = () => ({
   type: 'ACTION_A',
 });
@@ -109,7 +109,7 @@ const actionE = () => ({
 
 And a couple of sagas:
 
-``` sourceCode
+```js
 const sagaABC = function* sagaABC() {
   yield take('ACTION_A');
   // Do some I/O here.
@@ -127,7 +127,7 @@ Your `ACTION_A` will trigger `ACTION_B` and `ACTION_C` after I/O, as well as `AC
 
 You can easily wait for all that stuff:
 
-``` sourceCode
+```js
 import { awaitTransitiveActions } from 'redux-saga-utils';
 
 const saga = function* saga() {
