@@ -1,6 +1,6 @@
 import { createTestStore, arrayOfDeffered } from './utils';
 
-import takeLatestParametric from '../takeLatestParametric';
+import { takeLatestParametric } from '../index';
 
 const actionConst = 'TEST_ACTION';
 const actionScopeOne = 'testOne';
