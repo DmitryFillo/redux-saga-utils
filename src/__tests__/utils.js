@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
-export function deferred(props = {}) {
-  const def = { ...props };
+export function deferred() {
+  const def = {};
   const promise = new Promise((resolve, reject) => {
     def.resolve = resolve;
     def.reject = reject;

@@ -17,6 +17,12 @@
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
+  "files": [
+    "src",
+    "dist",
+    "README.rst",
+    "LICENSE"
+  ],
   "version": "0.0.1",
   "description": "High level utils for redux-saga",
   "main": "dist/bundle.js",

@@ -21,7 +21,7 @@ const actionTestTwo = index => ({
 const defs = arrayOfDeffered(4);
 
 // eslint-disable-next-line no-undef
-it('takeLatestParametric should takes latest actions for given action matcher', () => {
+it('takeLatestParametric takes latest actions for given action matcher', () => {
   const actual = [];
 
   const worker = function* worker(action) {
