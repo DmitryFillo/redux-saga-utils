@@ -2,56 +2,63 @@ import { createTestStore, arrayOfDeffered } from './utils';
 
 import takeLatestParametric from '../takeLatestParametric';
 
-const actionConst = 'TEST_ACTION_RECEIVED';
+const actionConst = 'TEST_ACTION';
+const actionScopeOne = 'testOne';
+const actionScopeTwo = 'testTwo';
 
-const actionCreatorOne = payload => ({
+const actionTestOne = index => ({
   type: actionConst,
-  name: 'testOne',
-  payload,
+  scope: actionScopeOne,
+  index,
 });
 
-const actionCreatorTwo = payload => ({
+const actionTestTwo = index => ({
   type: actionConst,
-  name: 'testTwo',
-  payload,
+  scope: actionScopeTwo,
+  index,
 });
 
 const defs = arrayOfDeffered(4);
 
-it('TODO: done this test', () => {
-  const store = createTestStore(testSaga);
-
+// eslint-disable-next-line no-undef
+it('takeLatestParametric should takes latest actions for given action matcher', () => {
   const actual = [];
 
-  function* testSaga() {
+  const worker = function* worker(action) {
+    const resp = yield defs[action.index].promise;
+    actual.push({ action, resp });
+  };
+
+  const testSaga = function* testSaga() {
     yield [
-      takeLatestParametric(actionConst, { name: 'testOne' }, worker),
-      takeLatestParametric(actionConst, { name: 'testTwo' }, workerTwo),
+      takeLatestParametric(actionConst, { scope: actionScopeOne }, worker),
+      takeLatestParametric(actionConst, { scope: actionScopeTwo }, worker),
     ];
-  }
+  };
 
-  function* worker(action) {
-    const resp = yield defs[action.payload - 1].promise;
-    actual.push({ action, resp });
-  }
-
-  function* workerTwo(action) {
-    const resp = yield defs[action.payload - 1].promise;
-    actual.push({ action, resp });
-  }
+  const store = createTestStore(testSaga);
 
   return Promise.resolve(1)
-        .then(() => store.dispatch(actionCreatorOne(1)))
-        .then(() => store.dispatch(actionCreatorOne(2)))
-        .then(() => defs[0].resolve('w-1'))
-        .then(() => store.dispatch(actionCreatorOne(3)))
-        .then(() => store.dispatch(actionCreatorTwo(3)))
-        .then(() => store.dispatch(actionCreatorTwo(3)))
-        .then(() => store.dispatch(actionCreatorTwo(3)))
-        .then(() => store.dispatch(actionCreatorTwo(4)))
-        .then(() => defs[1].resolve('w-2'))
-        .then(() => defs[2].resolve('w-3'))
-        .then(() => defs[3].resolve('w-4'))
-        .then(() => console.log(actual))
-        .then(() => expect(1).toBe(1));
+    .then(() => store.dispatch(actionTestOne(0)))
+    .then(() => store.dispatch(actionTestOne(1)))
+    .then(() => defs[0].resolve(0))
+    .then(() => store.dispatch(actionTestOne(2)))
+    .then(() => store.dispatch(actionTestTwo(2)))
+    .then(() => store.dispatch(actionTestTwo(2)))
+    .then(() => store.dispatch(actionTestTwo(2)))
+    .then(() => store.dispatch(actionTestTwo(3)))
+    .then(() => defs[1].resolve(1))
+    .then(() => defs[2].resolve(2))
+    .then(() => defs[3].resolve(3))
+    // eslint-disable-next-line no-undef
+    .then(() => expect(actual).toEqual([
+      {
+        action: actionTestOne(2),
+        resp: 2,
+      },
+      {
+        action: actionTestTwo(3),
+        resp: 3,
+      },
+    ]));
 });

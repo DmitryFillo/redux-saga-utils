@@ -13,7 +13,7 @@ export function deferred(props = {}) {
 
 export function arrayOfDeffered(length) {
   const arr = [];
-  for (let i = 0; i < length; i++) {
+  for (let i = 0; i < length; i += 1) {
     arr.push(deferred());
   }
   return arr;
@@ -22,13 +22,10 @@ export function arrayOfDeffered(length) {
 
 export const createTestStore = (saga) => {
   const sagaMiddleware = createSagaMiddleware();
-
   const store = createStore(
-        () => {},
-        applyMiddleware(sagaMiddleware),
-    );
-
+    () => {},
+    applyMiddleware(sagaMiddleware),
+  );
   sagaMiddleware.run(saga);
-
   return store;
 };

@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "build:dev": "webpack",
-    "build": "webpack -p",
+    "build:prod": "webpack -p",
     "test": "jest",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
