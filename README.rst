@@ -73,8 +73,6 @@ Then you can catch only actions with particular scope properties in the sagas:
     yield takeLatestParametric(actionConst, { scope: 'scopeOne' }, worker),
   };
 
-That's it.
-
 awaitTransitiveActions
 ----------------------
 
@@ -82,7 +80,7 @@ awaitTransitiveActions
 
   awaitTransitiveActions(actions, awaitActions)
 
- ``actions`` — array of actions. ``awaitActions`` — array of action constants.
+``actions`` — array of actions. ``awaitActions`` — array of action constants.
 
 Useful when you want to wait for actions which will be produced by another actions. Such a case can occur in sagas that are waiting for page initialization, etc.
 
@@ -116,7 +114,7 @@ And a couple of sagas:
 
   const sagaABC = function* sagaABC() {
     yield take('ACTION_A');
-    // Do some I/O.
+    // Do some I/O here.
     yield put(actionB());
     yield put(actionC());
   };
@@ -126,9 +124,9 @@ And a couple of sagas:
     yield put(actionE());
   };
 
-Your ``ACTION_A`` will trigger ``ACTION_B`` and ``ACTION_C`` in the future, as well as ``ACTION_D`` will trigger ``ACTION_E``, but before you can say knife.
+Your ``ACTION_A`` will trigger ``ACTION_B`` and ``ACTION_C`` after I/O, as well as ``ACTION_D`` will trigger ``ACTION_E``, *but before you can say knife*.
 
-You can easily wait for all that stuff.
+You can easily wait for all that stuff:
 
 .. code:: javascript
 
