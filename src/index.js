@@ -1,4 +1,4 @@
 import takeLatestParametric from './takeLatestParametric';
+import awaitTransitiveActions from './awaitTransitiveActions';
 
-// eslint-disable-next-line import/prefer-default-export
-export { takeLatestParametric };
+export { takeLatestParametric, awaitTransitiveActions };
