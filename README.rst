@@ -24,7 +24,7 @@ takeLatestParametric
     
 It works like `takeLatest <https://github.com/redux-saga/redux-saga/tree/v0.14.3/docs/api#takelatestpattern-saga-args>`_, but it checks action object before forking handler saga. Useful when you have actions with the same action type, but with different properties inside the action object to distinguish particular action scope. It's common approach in the redux world that helps to make redux apps reusable, e.g. `redux-form <http://redux-form.com/>`_ uses that.
 
-Signature is a bit different from `takeLatest <https://github.com/redux-saga/redux-saga/tree/v0.14.3/docs/api#takelatestpattern-saga-args>`_: ``actionCompare`` parameter added. It's part of action object to compare with.
+Signature is a bit different from `takeLatest <https://github.com/redux-saga/redux-saga/tree/v0.14.3/docs/api#takelatestpattern-saga-args>`_: ``actionCompare`` parameter is added. It's part of action object to compare with.
 
 Imagine these action creators in the redux app:
 
