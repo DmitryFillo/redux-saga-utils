@@ -1,15 +1,8 @@
 redux-saga-utils
 ================
 
-![image](https://travis-ci.org/DmitryFillo/redux-saga-utils.svg?branch=master)
-
-> target  
-> <https://travis-ci.org/DmitryFillo/redux-saga-utils>
-
-![image](https://coveralls.io/repos/github/DmitryFillo/redux-saga-utils/badge.svg?branch=master)
-
-> target  
-> <https://coveralls.io/github/DmitryFillo/redux-saga-utils?branch=master>
+[![image](https://img.shields.io/travis/DmitryFillo/redux-saga-utils/master.svg)](https://travis-ci.org/DmitryFillo/redux-saga-utils.svg?branch=master)
+[![image](https://img.shields.io/coveralls/DmitryFillo/redux-saga-utils/master.svg)](https://coveralls.io/github/DmitryFillo/redux-saga-utils?branch=master)
 
 High level utils for [redux-saga](https://github.com/redux-saga/redux-saga). These utils are based on the native [redux-saga](https://github.com/redux-saga/redux-saga) effects.
 
