@@ -10,7 +10,7 @@
     ]
   },
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist coverage",
     "build:dev": "webpack",
     "build:prod": "webpack -p",
     "test": "jest",
