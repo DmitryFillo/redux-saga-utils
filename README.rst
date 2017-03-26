@@ -12,6 +12,21 @@ High level utils for `redux-saga <https://github.com/redux-saga/redux-saga>`_.  
 
 .. contents::
 
+Installation
+============
+
+Via `Yarn <https://yarnpkg.com/en/>`_ (recommended):
+
+.. code::
+
+  yarn add redux-saga-utils
+
+Via NPM:
+
+.. code::
+
+  npm install redux-saga-utils --save
+
 API Reference
 =============
 
