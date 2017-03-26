@@ -8,7 +8,7 @@ redux-saga-utils
 .. image:: https://coveralls.io/repos/github/DmitryFillo/redux-saga-utils/badge.svg?branch=master
   :target: https://coveralls.io/github/DmitryFillo/redux-saga-utils?branch=master
 
-High level utils for `redux-saga <https://github.com/redux-saga/redux-saga>`_.  These utils are based on native `redux-saga <https://github.com/redux-saga/redux-saga>`_ effects.
+High level utils for `redux-saga <https://github.com/redux-saga/redux-saga>`_.  These utils are based on the native `redux-saga <https://github.com/redux-saga/redux-saga>`_ effects.
 
 .. contents::
 
