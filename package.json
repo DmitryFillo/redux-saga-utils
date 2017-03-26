@@ -31,7 +31,7 @@
     "effects",
     "side effects"
   ],
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "High level utils for redux-saga",
   "main": "dist/bundle.js",
   "module": "src/index.js",
