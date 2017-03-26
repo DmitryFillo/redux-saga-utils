@@ -23,7 +23,7 @@
     "README.rst",
     "LICENSE"
   ],
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "High level utils for redux-saga",
   "main": "dist/bundle.js",
   "module": "src/index.js",
